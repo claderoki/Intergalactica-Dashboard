@@ -1,0 +1,83 @@
+<%= form_with model: planet do |form| %>
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, :class => "form-control" %>
+      <% planet.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= form.label :image_url %><br>
+      <%= form.text_field :image_url, :class => "form-control" %><br>
+      <% planet.errors.full_messages_for(:image_url).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+  </div>
+
+<button type="button" <%= planet.id ? '' : 'hidden' %> class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#locationsModal">
+  Manage locations
+</button>
+
+  <br/>
+
+  <br/>
+  <div>
+    <%= link_to "Cancel", :back, :class => "btn btn-outline-secondary" %>
+    <%= form.submit "Save", :class => "btn btn-outline-success", :data => {style:"float:right;"} %>
+  </div>
+<% end %>
+
+<%= form_with url: save_all_path, id: "locations", method: "post", local: false do |form| %>
+<input hidden name="id" value="<%= planet.id %>"/>
+<div class="modal fade" id="locationsModal" tabindex="-1" aria-labelledby="locationsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="locationsModalLabel">Locations</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="locationsModalBody">
+        <%= render "locations/table", locations: planet.locations %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= form.submit "Save", :class => "btn btn-outline-success" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="toast-container position-absolute p-3 top-0 start-50 translate-middle-x" style="z-index: 5">
+  <div id="successToast" class="toast toast-lg hide text-white fs-4 bg-success"  data-bs-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+    </div>
+  </div>
+</div>
+
+<script>
+
+    function showToast(message) {
+        let toastElement = document.getElementById('successToast');
+        toastElement.querySelector('.toast-body').innerHTML = message;
+        let toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+
+    window.addEventListener("load", () => {
+        const element = document.querySelector("#locations");
+
+        element.addEventListener("ajax:success", (event) => {
+            const [_data, _status, xhr] = event.detail;
+            let body = document.getElementById('locationsModalBody');
+            body.innerHTML = _data.html;
+            let modal = bootstrap.Modal.getInstance(document.getElementById('locationsModal'))
+            modal.toggle();
+            showToast("Successfully saved!")
+        });
+  });
+
+</script>

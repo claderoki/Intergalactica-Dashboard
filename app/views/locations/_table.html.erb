@@ -1,0 +1,49 @@
+<table class="table" id="locationsTable" >
+<tr>
+<td>
+    Name
+</td>
+<td>
+    <div style="float:right;">
+    <button type="button" onclick="addRow(event)" class="btn btn-outline-success"><i class="fas fa-plus"></i></button>
+    </div>
+</td>
+</tr>
+
+<%= render "locations/row", location: nil, template: true, index: nil %>
+
+<% locations.each_with_index do | location, index | %>
+    <%= render "locations/row", location: location, template: false, index: index %>
+<% end %>
+
+<% if locations.count == 0 %>
+    <%= render "locations/row", location: nil, template: false, index: 0 %>
+<% end %>
+
+</table>
+<script>
+  let lastIndex = document.querySelector('#locationsTable tbody').children.length;
+
+  function createRow() {
+      let row = document.querySelector('#templateRow').cloneNode(true);
+      row.removeAttribute('hidden');
+      row.setAttribute('id', 'valueRow');
+      row.innerHTML = row.innerHTML.replaceAll('{{index}}', getUniqueIndex())
+      return row;
+  }
+
+  function removeRow(event) {
+    let row = event.target.closest('tr');
+    row.remove();
+  }
+
+  function addRow(event) {
+      let table = document.getElementById('locationsTable');
+      table.children[0].appendChild(createRow());
+  }
+
+  function getUniqueIndex() {
+      return ++lastIndex;
+  }
+
+</script>
