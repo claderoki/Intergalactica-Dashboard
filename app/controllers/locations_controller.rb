@@ -42,6 +42,7 @@ class LocationsController < ApplicationController
                 @location = Location.find(location[:id])
                 if @changed
                     @location.update(name: location[:name])
+                    @location.name = location[:name]
                 end
                 new_locations.push(@location)
             end
