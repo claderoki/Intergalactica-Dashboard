@@ -1,0 +1,25 @@
+<table class="table table-borderless" id="itemsTable">
+<tr>
+    <% columns.each do |column| %>
+      <td>
+        <%= column %>
+      </td>
+    <% end %>
+<td>
+    <div style="float:right;">
+    <button type="button" onclick="addRow(event)" class="btn btn-outline-success"><i class="fas fa-plus"></i></button>
+    </div>
+</td>
+</tr>
+
+<%= render "shared/row", item: nil, template: true, index: nil, namespace: namespace %>
+
+<% items.each_with_index do | item, index | %>
+    <%= render "shared/row", item: item, template: false, index: index, namespace: namespace %>
+<% end %>
+
+<% if items.count == 0 %>
+    <%= render "shared/row", item: nil, template: false, index: 0, namespace: namespace %>
+<% end %>
+
+</table>

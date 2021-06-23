@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gold: 
+  health: 
+  happiness: 
+  experience: MyString
+  int: MyString
+  cleanliness: MyString
+  int: MyString
+  food: 
+  item: one
+  item_category: one
+  scenario: one
+
+two:
+  gold: 
+  health: 
+  happiness: 
+  experience: MyString
+  int: MyString
+  cleanliness: MyString
+  int: MyString
+  food: 
+  item: two
+  item_category: two
+  scenario: two

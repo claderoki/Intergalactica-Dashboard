@@ -16,3 +16,36 @@
  #templateRow {
     display:none;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.back-button {
+  position:relative;
+  z-index: 500;
+  left:0;
+}
+
+.site-content {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.settings-block {
+  background-color: white;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  border: 1px solid white;
+  width:32px;
+  height:32px;
+}

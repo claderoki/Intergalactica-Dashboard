@@ -1,0 +1,34 @@
+<div class="row winnings">
+    <input hidden name="scenarios[<%=name_index%>][winnings][reference]" value="scenario_winnings_id_<%=name_index%>" />
+    <input hidden name="scenarios[<%= name_index %>][winnings][id]" id="scenario_winnings_id_<%=name_index%>" value="<%= winnings ? winnings.id : '' %>"/>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">💶</span>
+        <input name="scenarios[<%=name_index%>][winnings][gold]" id="gold" type="number" value="<%=winnings ? winnings.gold : 0%>" class="form-control" placeholder="">
+    </div>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">📊</span>
+        <input name="scenarios[<%=name_index%>][winnings][experience]" id="experience" type="number" value="<%=winnings ? winnings.experience : 0%>" class="form-control" placeholder="">
+    </div>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">❤️</span>
+        <input name="scenarios[<%=name_index%>][winnings][health]" id="health" type="number" value="<%=winnings ? winnings.health : 0%>" class="form-control" placeholder="">
+    </div>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">🌾</span>
+        <input name="scenarios[<%=name_index%>][winnings][food]" id="food" type="number" value="<%=winnings ? winnings.food : 0%>" class="form-control" placeholder="">
+    </div>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">🌻</span>
+        <input name="scenarios[<%=name_index%>][winnings][happiness]" id="happiness" type="number" value="<%=winnings ? winnings.happiness : 0%>" class="form-control" placeholder="">
+    </div>
+
+    <div class="col input-group mb-3">
+        <span class="input-group-text">💩</span>
+        <input name="scenarios[<%=name_index%>][winnings][cleanliness]" id="cleanliness" type="number" value="<%=winnings ? winnings.cleanliness : 0%>" class="form-control" placeholder="">
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<h1>New Action</h1>
+
+<%= render "form", action: @action %>
+
+<div class="col col-lg-3">
+  <div class="card settings-block">
+    <div class="card-body">
+      <h3>Action</h3>
+      <%= form_with url: create_action_path, id: "scenarios", method: "post", local: true do |form| %>
+        <div class="row">
+          <div class="col col-lg-12">
+            <%= form.text_field :name, :class => "form-control" %>
+            <% @action.errors.full_messages_for(:name).each do |message| %>
+              <div><%= message %></div>
+            <% end %>
+          <% if true %>
+            <div>
+                <div class="input-group">
+                    <select name="planet_id" class="form-control">
+                        <li><option class="form-control" value="0">--- planet ---</option></li>
+                        <% @planets.each do | planet | %>
+                          <li><option class="form-control" value="<%=planet.id%>"><%=planet.name%></option></li>
+                        <% end %>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <select name="location_id" class="form-control">
+                    <li><option class="form-control" value="0">--- location ---</option></li>
+                    <% @locations.each do | location | %>
+                      <li><option class="form-control" value="<%=location.id %>"><%=location.name%></option></li>
+                    <% end %>
+                </select>
+            </div>
+          <% end %>
+          </div>
+          <div>
+            <button type="submit" style="float:right;" class="btn btn-outline-success"><i class="fas fa-save"></i></button>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

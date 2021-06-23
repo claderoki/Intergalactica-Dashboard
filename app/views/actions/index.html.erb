@@ -1,0 +1,34 @@
+<h1>Actions</h1>
+<table class="table">
+
+    <tr>
+        <th scope="col col-lg-1" style="width:60px;" ></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">
+        <div style="float:right;">
+            <%= link_to(new_action_path, :class => "btn btn-outline-success", :data => {style:"float:right;"}) do %>
+                <i class="fas fa-plus"></i>
+            <% end %>
+        </div>
+        </th>
+    </tr>
+
+  <% @actions.each do |action| %>
+    <tr>
+        <td><span class="input-group-text"><%= action.symbol %></span></td>
+        <td> <%= action.name %> </td>
+        <td> (<%= "0 Scenarios" %>)</td>
+        <td>
+        <div style="float:right;">
+            <%= link_to(edit_action_path(action), :class => "btn btn-outline-primary sm") do %>
+                <i class="fas fa-pencil-alt"></i>
+            <% end %>
+            <%= link_to(action_path(action), :class => "btn btn-outline-danger", :data => { confirm: "Are you sure?" }) do %>
+                <i class="fas fa-minus"></i>
+            <% end %>
+        </div>
+        </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,10 @@
+<% name_index = index != nil ? index : '{{index}}' %>
+
+<tr id="<%= template ? 'templateRow' : 'valueRow' %>">
+    <%= render namespace+'/columns', item: item, template: false, index: index, name_index: name_index %>
+    <td>
+        <button class="btn btn-outline-danger" type="button" onclick="removeRow(event)" style="float:right;align:center;">
+            <i class="fas fa-minus"></i>
+        </button>
+    </td>
+</tr>

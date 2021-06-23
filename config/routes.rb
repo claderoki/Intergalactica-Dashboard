@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+  root "home#index"
 
-  resources :planets
+  constraints(AdminConstraint.new) do
+    resources :actions
+    resources :planets
 
-  post "/save_all", to: "locations#save_all"
-  get "/render_all", to: "locations#render_all"
+    post "/create_action", to: "actions#create_action"
+    get "/render_all", to: "locations#render_all"
+    post "/save_locations", to: "locations#save_locations"
+    post "/save_scenarios", to: "scenarios#save_scenarios"
+  end
+
+  get "/authenticate", to: "oauth#authenticate"
+  get "/authenticated", to: "oauth#authenticated"
+
 end

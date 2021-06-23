@@ -1,11 +1,5 @@
 class LocationsController < ApplicationController
-
-    def render_all
-        @planet = Planet.find(params[:id])
-        render json: { html: render_to_string(partial: 'locations/table', locals: {template: false, locations: @planet.locations}) }
-    end
-
-    def save_all
+    def save_locations
         @planet = Planet.find(params[:id])
 
         locations_to_remove = []
@@ -52,7 +46,7 @@ class LocationsController < ApplicationController
             location.destroy()
         end
 
-        render json: { html: render_to_string(partial: 'locations/table', locals: {template: false, locations: new_locations}) }
+        render json: { html: render_to_string(partial: 'shared/table', locals: {template: false, items: new_locations, namespace: 'locations', columns: ['name']}) }
     end
 
 end

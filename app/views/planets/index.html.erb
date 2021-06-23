@@ -24,9 +24,6 @@
             <%= link_to(edit_planet_path(planet), :class => "btn btn-outline-primary sm") do %>
                 <i class="fas fa-pencil-alt"></i>
             <% end %>
-            <%= link_to(planet, :class => "btn btn-outline-primary sm", :style => "display:none;") do %>
-                <i class="far fa-eye"></i>
-            <% end %>
             <%= link_to(planet_path(planet), :class => "btn btn-outline-danger", :data => { confirm: "Are you sure?" }) do %>
                 <i class="fas fa-minus"></i>
             <% end %>

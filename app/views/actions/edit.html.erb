@@ -1,0 +1,21 @@
+<h1>Edit Action `<%= @action.name %>` </h1>
+
+<%= render "form", action: @action %>
+
+<div class="col">
+  <div class="card settings-block">
+    <div class="card-body">
+      <h3>Scenario's</h3>
+      <%= form_with url: save_scenarios_path, id: "scenarios", method: "post", local: false do |form| %>
+          <div class="col col-lg-12">
+            <input hidden name="action_id" value="<%= @action.id %>"/>
+            <%= render "shared/table", items: @action.scenarios, columns: [''], namespace: 'actions' %>
+            <button type="submit" class="btn btn-outline-success" style="float:right;"><i class="fas fa-save"></i></button>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag('table.js') %>
+<%= javascript_include_tag('actions.js') %>

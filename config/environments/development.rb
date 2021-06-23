@@ -1,6 +1,27 @@
 require "active_support/core_ext/integer/time"
 
+class AdminConstraint
+  ADMIN_USER_IDS = [120566758091259906, 247855177074212865, 841255759978954763]
+
+  def matches?(request)
+    me = OauthController::get_me(request.session)
+    return ADMIN_USER_IDS.include?(Integer(me['id']))
+  end
+end
+
 Rails.application.configure do
+
+  if ENV['db_database'] == nil
+    file = File.open('.env', "r")
+    data = file.read
+    file.close
+
+    for line in data.split(/\n/) do
+      key, value = line.split('=')
+      ENV[key] = value
+    end
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time

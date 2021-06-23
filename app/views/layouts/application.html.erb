@@ -13,9 +13,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <% user = current_user() %>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" style="margin-left:5px;">
       <img src="https://cdn.discordapp.com/attachments/744172199770062899/850863548980658227/c3p0.png" width="30" height="30" class="d-inline-block align-top" alt="">
       C-3PO
     </a>
@@ -24,20 +25,50 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      <% if user %>
         <li class="nav-item">
           <a class="nav-link text-white" href="/planets">
             <i class="fas fa-meteor"></i>
             Planets
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/actions">
+            <i class="fas fa-code-branch"></i>
+            Actions
+          </a>
+        </li>
+      <% end %>
       </ul>
     </div>
+      <form class="d-flex" style="margin-right:5px;">
+        <% if user %>
+          <img class="user-avatar" src="<%=user.avatar()%>"><img/>
+          <label class="text-white">&nbsp;Logged in&nbsp;</label>
+        <% else %>
+          <a class="btn btn-primary" href="<%= discord_oauth_url() %>">
+            <i class="fab fa-discord"></i>
+              Login
+          </a>
+        <% end %>
+      </form>
   </nav>
 
+  <%= link_to :back, :class => "btn btn-outline-primary back-button" do %>
+    <i class="fas fa-chevron-left"></i>
+  <% end %>
+
   <div class="container">
-    <div class="row">
+    <div class="row site-content">
       <%= yield %>
     </div>
 </div>
+
+<div class="toast-container position-absolute p-3 top-0 start-50 translate-middle-x" style="z-index: 5">
+  <div id="successToast" class="toast toast-lg hide text-white fs-4 bg-success"  data-bs-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body"></div>
+  </div>
+</div>
+
   </body>
 </html>
