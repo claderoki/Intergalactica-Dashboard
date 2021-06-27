@@ -30,7 +30,7 @@
   </div>
 <% end %>
 
-<%= form_with url: save_all_path, id: "locations", method: "post", local: false do |form| %>
+<%= form_with url: save_scenarios_path, id: "locations", method: "post", local: false do |form| %>
 <input hidden name="id" value="<%= planet.id %>"/>
 <div class="modal fade" id="locationsModal" tabindex="-1" aria-labelledby="locationsModalLabel" aria-hidden="true">
   <div class="modal-dialog">

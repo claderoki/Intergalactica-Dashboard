@@ -11,18 +11,3 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-function removeRow(event) {
-    console.log(event.target.parentElement.parentElement.remove());
-}
-
-function addRow(event) {
-    let table = document.getElementById('locationsTable');
-    let input = table.querySelector('.templateRow').cloneNode(true);
-    input.lastChild
-    input.removeAttribute('hiden');
-    input.setAttribute('id', 'valueRow');
-
-    table.firstChild.appendChild('<tr><td>abc</td><td>abc</td></tr>');
-    console.log(table.children);
-  }

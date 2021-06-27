@@ -19,26 +19,30 @@ class ActionsController < ApplicationController
         )
     end
 
-    def create_action
-        location = Location.find(params[:location_id])
-        planet   = Planet.find(params[:planet_id])
-
-        @action = Action.new(
-            :name     => params[:name],
-            :location => location,
-            :planet   => planet,
-            :code     => '',
-            :symbol   => ''
-        )
-
-        # if location.planet != planet
-        #     render :new
-        # end
-
-        if @action.save
-            redirect_to '/actions/'+String(@action.id)+'/edit'
+    def save_action
+        if params[:id] == "" || params[:id] == 0
+            location = Location.find(params[:location_id])
+            planet   = Planet.find(params[:planet_id])
+            @action = Action.new(
+                :name     => params[:name],
+                :location => location,
+                :planet   => planet,
+                :code     => '',
+                :symbol   => params[:symbol]
+            )
+            if @action.save
+                redirect_to '/actions/'+String(@action.id)+'/edit'
+            else
+                render :new
+            end
         else
-            render :new
+            @action = Action.find(params[:id])
+            if @action.update(:name => params[:name], :symbol => params[:symbol])
+                render :edit
+            else
+                render :edit
+            end
+
         end
     end
 
@@ -48,6 +52,19 @@ class ActionsController < ApplicationController
 
     def edit
         @action = Action.find(params[:id])
+        if @action.location != nil
+            @abc = Location.find_by_sql(["
+                SELECT
+                CONCAT(`exploration_planet_location`.`name`, ' (',`exploration_planet`.`name` ,')') as name
+                FROM exploration_planet_location
+                INNER JOIN exploration_planet ON exploration_planet_location.planet_id = exploration_planet.id
+                WHERE exploration_planet_location.id = ?
+                ", @action.location.id]
+            )
+            @contextualLocation = @abc[0].name
+        else
+            @contextualLocation = @action.planet.name
+        end
     end
 
     def update

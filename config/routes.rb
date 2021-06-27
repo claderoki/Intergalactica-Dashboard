@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :actions
     resources :planets
 
-    post "/create_action", to: "actions#create_action"
+    post "/save_action", to: "actions#save_action"
     get "/render_all", to: "locations#render_all"
     post "/save_locations", to: "locations#save_locations"
     post "/save_scenarios", to: "scenarios#save_scenarios"

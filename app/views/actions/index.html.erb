@@ -18,7 +18,7 @@
     <tr>
         <td><span class="input-group-text"><%= action.symbol %></span></td>
         <td> <%= action.name %> </td>
-        <td> (<%= "0 Scenarios" %>)</td>
+        <td> (<%= action.scenarios.count %> scenarios)</td>
         <td>
         <div style="float:right;">
             <%= link_to(edit_action_path(action), :class => "btn btn-outline-primary sm") do %>

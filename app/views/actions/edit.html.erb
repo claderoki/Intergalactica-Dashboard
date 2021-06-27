@@ -1,8 +1,8 @@
-<h1>Edit Action `<%= @action.name %>` </h1>
+<h1>Edit Action `<%= @action.name %>` for `<%= @contextualLocation %>` </h1>
 
-<%= render "form", action: @action %>
+<%= render "form", action: @action, planets: @planets, locations: @locations %>
 
-<div class="col">
+<div class="col col-lg-12">
   <div class="card settings-block">
     <div class="card-body">
       <h3>Scenario's</h3>
@@ -18,4 +18,3 @@
 </div>
 
 <%= javascript_include_tag('table.js') %>
-<%= javascript_include_tag('actions.js') %>

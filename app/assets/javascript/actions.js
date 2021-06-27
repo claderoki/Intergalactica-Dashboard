@@ -1,3 +1,4 @@
+//= require fgEmojiPicker
 
 function showToast(message) {
     let toastElement = document.getElementById('successToast');
@@ -18,3 +19,9 @@ window.addEventListener("load", () => {
         showToast("Successfully saved!")
     });
 });
+
+new FgEmojiPicker({
+    trigger: '#emojiField',
+    insertInto: document.querySelector('#emojiField'),
+    append: false
+})
