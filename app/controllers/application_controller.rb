@@ -21,6 +21,4 @@ class ApplicationController < ActionController::Base
     end
     helper_method :discord_oauth_url
 
-
-
 end

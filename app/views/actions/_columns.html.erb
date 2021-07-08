@@ -1,7 +1,7 @@
 <td>
     <input name="scenarios[<%= name_index %>][reference]" value="scenario_id_<%=name_index%>" hidden/>
     <input name="scenarios[<%= name_index %>][id]" id="scenario_id_<%=name_index%>" class="form-control" value="<%= item ? item.id : '' %>" hidden/>
-    <input name="scenarios[<%= name_index %>][text]" class="form-control" value="<%= item ? item.text : '' %>" placeholder="Write scenario text here..." />
+    <textarea name="scenarios[<%= name_index %>][text]" class="form-control" placeholder="Write scenario text here..." ><%= item ? item.text : '' %></textarea>
 
     <%= render "winnings", winnings: item ? item.scenario_winnings : nil, name_index: name_index %>
 </td>

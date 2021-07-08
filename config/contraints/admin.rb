@@ -3,6 +3,7 @@ class AdminConstraint
 
     def matches?(request)
       me = OauthController::get_me(request.session)
-      return ADMIN_USER_IDS.include?(Integer(me['id']))
+      
+      return me != nil && ADMIN_USER_IDS.include?(Integer(me['id']))
     end
   end
