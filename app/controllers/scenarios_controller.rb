@@ -36,7 +36,6 @@ class ScenariosController < ApplicationController
         if new
             scenario = @action.scenarios.create(
                 text: value[:text],
-                code: "",
                 scenario_winnings: winnings
             )
             @references[value[:reference]] = scenario.id
