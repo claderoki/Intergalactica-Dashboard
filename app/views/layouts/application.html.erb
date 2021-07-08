@@ -16,11 +16,10 @@
   <% user = current_user() %>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" style="margin-left:5px;">
+    <a class="navbar-brand" style="margin-left:5px;" href="/">
       <img src="https://cdn.discordapp.com/attachments/744172199770062899/850863548980658227/c3p0.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      C-3PO
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,11 +43,11 @@
       <form class="d-flex" style="margin-right:5px;">
         <% if user %>
           <img class="user-avatar" src="<%=user.avatar()%>"><img/>
-          <label class="text-white">&nbsp;Logged in&nbsp;</label>
+          <label class="text-white d-none d-sm-block">&nbspLogged in&nbsp;</label>
         <% else %>
           <a class="btn btn-primary" href="<%= discord_oauth_url() %>">
             <i class="fab fa-discord"></i>
-              Login
+            <label class="d-none d-sm-block">Login</label>
           </a>
         <% end %>
       </form>

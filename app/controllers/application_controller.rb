@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
         url = 'https://discord.com/api/oauth2/authorize?client_id='
         url += ENV['discord_oauth_client_id']
         url += '&redirect_uri='
-        url += ENV['discord_oauth_redirect_uri']
+        url += request.protocol + request.host_with_port + '/authenticate'
         return url + '&response_type=code&scope=identify'
     end
     helper_method :discord_oauth_url

@@ -11,7 +11,7 @@ class OauthController < ApplicationController
                 'client_secret' => ENV['discord_oauth_client_secret'],
                 'grant_type'    => 'authorization_code',
                 'code'          => code,
-                'redirect_uri'  => ENV['discord_oauth_redirect_uri'],
+                'redirect_uri'  => request.protocol + request.host_with_port + '/authenticate',
             },
         )
 
