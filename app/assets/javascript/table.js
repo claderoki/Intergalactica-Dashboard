@@ -1,5 +1,5 @@
 
-  let lastIndex = document.querySelector('#itemsTable tbody').children.length;
+  var lastIndex = document.querySelector('#itemsTable tbody').children.length;
 
   function createRow(table) {
       let row = document.querySelector('#templateRow').cloneNode(true);

@@ -1,4 +1,4 @@
-const FgEmojiPicker = function (options) {
+var FgEmojiPicker = function (options) {
 
     this.options = options;
     this.emojiJson = null;
