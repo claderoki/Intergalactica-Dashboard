@@ -1,7 +1,14 @@
 require "active_support/core_ext/integer/time"
 
 class AdminConstraint
-  ADMIN_USER_IDS = [120566758091259906, 247855177074212865, 841255759978954763, 160548570481688576, 687652437339013126, 112988146496487424]
+  ADMIN_USER_IDS = [
+      120566758091259906,
+      247855177074212865,
+      841255759978954763,
+      160548570481688576,
+      687652437339013126,
+      112988146496487424
+    ]
 
   def matches?(request)
     me = OauthController::get_me(request.session)
