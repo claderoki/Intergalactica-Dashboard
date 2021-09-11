@@ -1,0 +1,63 @@
+<%= form_with model: item do |form| %>
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :image_url %><br>
+      <%= form.text_field :image_url, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :description %><br>
+      <%= form.text_field :description, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :item_category %><br>
+      <div class="input-group">
+      <select name="category_id" class="form-control">
+      <li><option class="form-control" value="0">---Select a category---</option></li>
+        <% @categories.each do | category | %>
+          <% if @item.category != nil && category.id == @item.category[:id] %>
+            <li><option class="form-control" value="<%=category.id %>" selected><%=category.name%></option></li>
+          <% else %>
+            <li><option class="form-control" value="<%=category.id %>"><%=category.name%></option></li>
+          <% end %>
+        <% end %>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-lg-3">
+      <%= form.label :rarity %><br>
+      <div class="input-group">
+      <select name="rarity" class="form-control">
+        <% @rarities.each do | rarity | %>
+          <% if rarity == @item.rarity %>
+            <li><option class="form-control" value="<%=rarity %>" selected><%=rarity%></option></li>
+          <% else %>
+            <li><option class="form-control" value="<%=rarity %>"><%=rarity%></option></li>
+          <% end %>
+        <% end %>
+      </select>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div>
+    <%= link_to "Cancel", :back, :class => "btn btn-outline-secondary" %>
+    <%= form.submit "Save", :class => "btn btn-outline-success", :data => {style:"float:right;"} %>
+  </div>
+<% end %>
